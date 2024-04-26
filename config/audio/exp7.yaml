@@ -1,0 +1,23 @@
+Exp_name: Cnn14_mobilev2-logmel
+Modality: 'audio'
+
+Training:
+    Batch_size: 100
+    Max_epoch: 400
+    learning_rate: 1e-3
+    seed: 25
+    classes_num: 4
+
+Audio_features:
+    sample_rate: 64000
+    window_size: 1600
+    hop_size: 640
+    mel_bins: 128
+    fmin: 1
+    fmax: 128000
+
+Model: Cnn14_mobilev2
+
+Workspace: 'Audio_workplaces'
+
+

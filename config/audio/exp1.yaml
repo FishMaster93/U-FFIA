@@ -1,0 +1,22 @@
+Exp_name: Cnn14_mv2_6.24(300-0.25)
+
+Modality: 'audio'
+
+Training:
+    Batch_size: 300
+    Max_epoch: 300
+    learning_rate: 1e-3
+    seed: 25
+    classes_num: 4   
+Audio_features:
+    sample_rate: 64000
+    window_size: 2048
+    hop_size: 1024
+    mel_bins: 128
+    fmin: 1
+    fmax: 128000
+
+Model: Cnn14_mobilev2
+
+Workspace: 'Noise_workplace_audio'
+

@@ -1,0 +1,20 @@
+Exp_name: unified_6lyers(mlp_3)_1frame-panns
+
+Modality: 'audio_video'
+
+Training:
+    Batch_size: 50
+    Max_epoch: 300
+    learning_rate: 1e-5
+    seed: 25
+    classes_num: 4
+Audio_features:
+    sample_rate: 64000
+    window_size: 2048
+    hop_size: 1024
+    mel_bins: 128
+    fmin: 1
+    fmax: 128000
+
+Workspace: 'Unified_workspace'
+

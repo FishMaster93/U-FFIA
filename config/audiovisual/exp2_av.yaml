@@ -1,0 +1,24 @@
+Exp_name: audio-video-fusion(MBT-4L)
+
+Modality: 'audio_video'
+
+Training:
+    Batch_size: 20
+    Max_epoch: 20
+    learning_rate: 1e-3
+    seed: 25
+    classes_num: 4
+Audio_features:
+    sample_rate: 64000
+    window_size: 2048
+    hop_size: 1024
+    mel_bins: 64
+    fmin: 1
+    fmax: 128000
+
+Model:
+    video_name: S3D
+    audio_name: MobileNetV2
+
+Workspace: 'Fish_workspace'
+

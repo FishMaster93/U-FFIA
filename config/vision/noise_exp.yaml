@@ -1,0 +1,15 @@
+Exp_name: video(20frames)
+
+Modality: 'video'
+
+Training:
+    Batch_size: 20
+    Max_epoch: 20
+    learning_rate: 1e-3
+    seed: 20
+    classes_num: 4
+
+Model:
+    name: S3D
+
+Workspace: 'Fish_workspace'

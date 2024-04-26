@@ -1,0 +1,22 @@
+Exp_name: MobileNetV3-small
+
+Modality: 'audio'
+
+Training:
+    Batch_size: 200
+    Max_epoch: 400
+    learning_rate: 1e-3
+    seed: 20
+    classes_num: 4
+Audio_features:
+    sample_rate: 64000
+    window_size: 2048
+    hop_size: 1024
+    mel_bins: 64
+    fmin: 1
+    fmax: 128000
+
+Model: MobileNetV3_Small
+
+Workspace: 'Fish_workspace'
+

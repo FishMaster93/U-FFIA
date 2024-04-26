@@ -1,0 +1,20 @@
+Exp_name: pre_mobilevit_xxs_noise_20
+
+Modality: 'audio'
+
+Training:
+    Batch_size: 200
+    Max_epoch: 200
+    learning_rate: 1e-3
+    seed: 25
+    classes_num: 4
+Audio_features:
+    sample_rate: 64000
+    window_size: 2048
+    hop_size: 1024
+    mel_bins: 128
+    fmin: 1
+    fmax: 128000
+
+Model: MobileViT_XXS
+Workspace: 'Audio_workplaces'

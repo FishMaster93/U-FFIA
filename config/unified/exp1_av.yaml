@@ -1,0 +1,23 @@
+Exp_name: 9.6Unified_1e4_frames1_v_0.5_300"
+
+Modality: 'audio_video'
+
+Training:
+    Batch_size: 30
+    Max_epoch: 200
+    learning_rate: 1e-4
+    seed: 25
+    classes_num: 4
+    modality_drop: 0.5
+    audio_drop: 0.5
+
+Audio_features:
+    sample_rate: 64000
+    window_size: 2048
+    hop_size: 1024
+    mel_bins: 128
+    fmin: 1
+    fmax: 128000
+
+
+Workspace: 'Unified_workspace'
