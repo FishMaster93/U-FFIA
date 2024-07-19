@@ -183,29 +183,6 @@ class Fish_Voice_Dataset(Dataset):
 
 
 
-        # save_path = '/mnt/fast/nobackup/scratch4weeks/mc02229/Fish_audio_noise_-20/'
-        # wav_name, target = self.data_dict[index]
-        # wav = load_audio(wav_name, sr=self.sample_rate)
-        # wav = np.array(wav)
-        # noise_name = random.choice(get_noisename())
-        # audio = load_noise(noise_name)
-        # # duration = librosa.get_duration(audio, sr=64000)
-       
-        # SNR_db = -20
-        # noise_power = np.mean(audio**2)
-        # signal_power = np.mean(wav**2)
-        # scale_factor = np.sqrt(signal_power / (noise_power*(10**(SNR_db / 10))))
-        # mixed_signal = wav+(audio*scale_factor)
-        # # if duration < 2:
-        # #     start_time = random.randint(0, len(wav) - len(audio))
-        # #     new_wav = wav.copy()
-        # #     wav1 = new_wav[:start_time]
-        # #     wav3 = new_wav[start_time + len(audio):]
-        # #     wav2 = new_wav[start_time:start_time + len(audio)] + audio
-        # #     noise_wav = np.concatenate((wav1, wav2, wav3), axis=0)
-        # # else:
-        # #     new_wav = wav.copy()
-        # #     noise_wav = new_wav + audio
 
         # # change 'eye(num)' if using different class nums
         # target = np.eye(4)[target]
