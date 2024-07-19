@@ -19,9 +19,9 @@ from models.model_zoo.Cnn14_mobilev2 import Cnn14_mobilev2
 from models.model_zoo.mcv2 import patch_cmv2
 # from models.model_zoo.CBAM_mobilenet import Cnn14_mobilev2
 from models.model_zoo.MobileVitV1 import MobileViT_XXS
-from models.model_zoo.Cnn6 import Cnn6
-# from models.model_zoo.models import MobileNetV1, ResNet18, ResNet22, ResNet38, Cnn10, Cnn14, Cnn4, Cnn6, Wavegram_Cnn14
-from models.Audio_model import AudioModel, Audio_Frontend, AudioModel_pretrained, AudioModel_ownpretrained, AudioModel_Trasformer, AudioModel_Cnn6
+# from models.model_zoo.Cnn6 import Cnn6
+from models.model_zoo.models import MobileNetV1, ResNet18, ResNet22, ResNet38, Cnn10, Cnn14, Cnn4, Cnn6, Wavegram_Cnn14
+from models.Audio_model import AudioModel, Audio_Frontend, AudioModel_pretrained, AudioModel_ownpretrained, AudioModel_Trasformer, AudioModel_Cnn6, AudioModel_pre_Cnn10
 from models.model_zoo.MobileNetV2 import MobileNetV2
 from models.model_zoo.MobileNetV3 import MobileNetV3_Small
 import time
@@ -34,14 +34,14 @@ from models.Pooling import Pooling_layer
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Example of parser.')
-    parser.add_argument('--config', type=str, default='config/audio/exp3.yaml')
+    parser.add_argument('--config', type=str, default='config/audio/pre_exp.yaml')
     args = parser.parse_args()
     config = OmegaConf.load(args.config)
     workspace = config['Workspace']
     exp_name = config['Exp_name']
     modality = config['Modality']
     model_type = config['Model']
-    model_type_pre = config['Model_pretrained']
+    # model_type_pre = config['Model_pretrained']
 
     Training = config['Training']
     audio_features = config['Audio_features']
@@ -72,23 +72,12 @@ if __name__ == '__main__':
 
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     frontend = Audio_Frontend(**audio_features)
-    Model_pre = eval(model_type_pre)
-    backbone_pre = Model_pre()
-    Model = eval(model_type)
-    # backbone = Model()
-    backbone = Model(
-        num_classes=4,
-        dim=768,
-        depth=6,
-        heads=8,
-        mlp_dim=1024,
-        dropout=0.1,
-        emb_dropout=0.1)
 
-    # backbone = Model()
-    # model = AudioModel(frontend=frontend, backbone=backbone)
-    model = AudioModel_Cnn6(frontend_pre=frontend, backbone_pre=backbone_pre, backbone=backbone)
-    # model = AudioModel_Trasformer(frontend=frontend, backbone=backbone)
+    Model = eval(model_type)
+    backbone = Model()
+    """if you want to use pretrained model please change the AudioModel_Cnn6 function"""
+    model = AudioModel_pre_Cnn10(frontend=frontend, backbone=backbone)
+
     model = model.to(device)
 
     train_loader = get_dataloader(split='train', batch_size=batch_size, sample_rate=sample_rate, seed=seed, drop_last=True)
@@ -96,29 +85,7 @@ if __name__ == '__main__':
     val_loader = get_dataloader(split='val', batch_size=batch_size, sample_rate=sample_rate, seed=seed, drop_last=True)
 
     optimizer = optim.Adam(model.parameters(), lr=learning_rate, betas=(0.9, 0.999))
-    # opt_cls = AdamW
-    # optimizer = opt_cls(
-    #     [
-    #         {
-    #             "name": "model",
-    #             "params":model.parameters(),
-    #             "lr": learning_rate,
-    #         }
-    #     ],
-    #     weight_decay = 1e-5,
-    #     betas = (0.9, 0.999),
-    # )
 
-    # scheduler = WarmupCosineScheduler(
-    #     optimizer,
-    #     warmup_epochs=5,
-    #     num_epochs=max_epoch,
-    #     iter_per_epoch=len(train_loader)
-    # )
-    # optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate,
-    #                         momentum=0.9,
-    #                         weight_decay=5e-5)
-    # scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, max_epoch)
     logger.info(config)
     logger.info(model)
     logger.info(f"{modality} modality experiments running on {device}")

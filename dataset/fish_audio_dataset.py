@@ -62,7 +62,7 @@ def get_wav_name(split='strong'):
     params: str
         middle, none, strong, weak
     """
-    path = '/mnt/fast/nobackup/users/mc02229/Fish_av_dataset/audio_dataset'
+    path = '/mnt/fast/nobackup/scratch4weeks/mc02229/Fish_av_dataset/audio_dataset/'
     audio = []
     l1 = os.listdir(path)
     for dir in l1:

@@ -13,7 +13,7 @@ class Audio_Frontend(nn.Module):
     """
 
     def __init__(self, sample_rate, window_size, hop_size, mel_bins, fmin,
-                 fmax, sampler=True):
+                 fmax):
         super(Audio_Frontend, self).__init__()
 
         window = 'hann'
@@ -60,8 +60,8 @@ class Audio_Frontend(nn.Module):
         if self.training:
             x = self.spec_augmenter(x)
 
-        if sampler:
-            x = self.Pooling(x)
+        # if sampler:
+        #     x = self.Pooling(x)
 
         return x
 
@@ -248,8 +248,8 @@ class AudioModel_pretrained(nn.Module):
         """
 
         clipwise_output = self.audio_encoder(self.audio_frontend(input))
-        # output_dict = {'clipwise_output': clipwise_output}
-        return clipwise_output
+        output_dict = {'clipwise_output': clipwise_output}
+        return output_dict
     
 
 class AudioModel_pre_Cnn10(nn.Module):
@@ -257,17 +257,12 @@ class AudioModel_pre_Cnn10(nn.Module):
         super().__init__(**kwargs)
         self.audio_encoder = backbone
         self.audio_frontend = frontend
-        pretrained_audio_encoder = torch.load('/mnt/fast/nobackup/users/mc02229/FishMM/pretrained_models/PANNs/CNN10_audio_best.pt')['model_state_dict']
+        pretrained_audio_encoder = torch.load('/mnt/fast/nobackup/users/mc02229/FishMM/pretrained_models/PANNs/Cnn10.pth')['model']
         dict_new = self.audio_encoder.state_dict().copy()
-        # pretrained_audio_encoder = {k:v for k, v in pretrained_audio_encoder.items() if k in dict_new}
-        trained_list = [i for i in pretrained_audio_encoder.keys()]
+        trained_list = [i for i in pretrained_audio_encoder.keys() if not ('fc_audioset' in i or i.startswith('bn0') or i.startswith('spec') or i.startswith('logmel'))]
         for i in range(len(trained_list)):
             dict_new[trained_list[i]] = pretrained_audio_encoder[trained_list[i]]
         self.audio_encoder.load_state_dict(dict_new)
-
-        for name, param in self.audio_encoder.named_parameters():
-            # if "fc_audioset" not in name:
-            param.requires_grad = False
 
 
     def forward(self, input):
@@ -276,8 +271,8 @@ class AudioModel_pre_Cnn10(nn.Module):
         """
 
         clipwise_output = self.audio_encoder(self.audio_frontend(input))
-        # output_dict = {'clipwise_output': clipwise_output}
-        return clipwise_output
+        output_dict = {'clipwise_output': clipwise_output}
+        return output_dict
 
 
 class AudioModel_MV2(nn.Module):

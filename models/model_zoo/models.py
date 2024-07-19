@@ -371,7 +371,7 @@ class Cnn10(nn.Module):
         
         output_dict = {'clipwise_output': clipwise_output}
         # return clipwise_output, embedding
-        return output_dict
+        return clipwise_output
 
 
 def _resnet_conv3x3(in_planes, out_planes):
