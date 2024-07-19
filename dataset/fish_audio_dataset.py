@@ -29,12 +29,7 @@ def load_audio(path, sr=None):
     y = resample(y, num=sr*2)
     return y
 
-# def load_audio(path, sr=64000):
-#     waveform, sample_rate = torchaudio.load(path)
-#     resample_transform = torchaudio.transforms.Resample(sample_rate, sr)
-#     resample_waveform = resample_transform(waveform)
-#     return resample_waveform    
-
+ 
 def load_noise(path):
     y, sample = librosa.load(path, sr=64000)
     dur1 = librosa.get_duration(y, sample)
@@ -72,16 +67,6 @@ def get_wav_name(split='strong'):
             audio.append(glob.glob(wav_dir))
     return list(chain.from_iterable(audio))
 
-
-# def awgn(audio, snr):
-#     audio_power = audio**2
-#     audio_average_power = np.mean(audio_power)
-#     audio_average_db = 10*np.log10(audio_average_power)
-#     noise_average_db = audio_average_db - snr
-#     noise_average_power = 10**(noise_average_db / 10)
-#     mean_noise = 0
-#     noise = np.random.normal(mean_noise, np.sqrt(noise_average_power), len(audio))
-#     return audio+noise
 
 
 
