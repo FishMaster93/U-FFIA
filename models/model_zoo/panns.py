@@ -21,7 +21,7 @@ class PANNS_Cnn6(nn.Module):
         self.fc1 = nn.Linear(512, 512, bias=True) 
         self.fc_audioset = nn.Linear(512, classes_num, bias=True)
         init_layer(self.fc_audioset)   
-
+        init_layer(self.fc1)
     def forward(self, x):
 
         x = self.conv_block1(x, pool_size=(2, 2), pool_type='avg')
@@ -49,7 +49,7 @@ class PANNS_Cnn6(nn.Module):
         return clipwise_output
 
 class PANNS_Cnn10(nn.Module):
-    def __init__(self, classes_num):
+    def __init__(self, classes_num=4):
         
         super(PANNS_Cnn10, self).__init__()
 

@@ -1,10 +1,10 @@
-Exp_name: Cnn10-Pretrained
+Exp_name: Pretrained-Cnn10
 
 Modality: 'audio'
 
 Training:
-    Batch_size: 100
-    Max_epoch: 300
+    Batch_size: 300
+    Max_epoch: 80
     learning_rate: 1e-3
     seed: 25
     classes_num: 4
@@ -12,10 +12,10 @@ Audio_features:
     sample_rate: 64000
     window_size: 2048
     hop_size: 1024
-    mel_bins: 128
+    mel_bins: 64
     fmin: 1
     fmax: 128000
 
-Model: Cnn10
+Model: PANNS_Cnn10
 
 Workspace: 'Audio_workplaces'

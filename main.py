@@ -20,7 +20,8 @@ from models.model_zoo.mcv2 import patch_cmv2
 # from models.model_zoo.CBAM_mobilenet import Cnn14_mobilev2
 from models.model_zoo.MobileVitV1 import MobileViT_XXS
 # from models.model_zoo.Cnn6 import Cnn6
-from models.model_zoo.models import MobileNetV1, ResNet18, ResNet22, ResNet38, Cnn10, Cnn14, Cnn4, Cnn6, Wavegram_Cnn14
+from models.model_zoo.panns import PANNS_Cnn10
+from models.model_zoo.models import MobileNetV1, ResNet18, ResNet22, ResNet38, Cnn14, Cnn4, Cnn6, Wavegram_Cnn14
 from models.Audio_model import AudioModel, Audio_Frontend, AudioModel_pretrained, AudioModel_ownpretrained, AudioModel_Trasformer, AudioModel_Cnn6, AudioModel_pre_Cnn10
 from models.model_zoo.MobileNetV2 import MobileNetV2
 from models.model_zoo.MobileNetV3 import MobileNetV3_Small

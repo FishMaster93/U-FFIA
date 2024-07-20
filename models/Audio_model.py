@@ -23,7 +23,7 @@ class Audio_Frontend(nn.Module):
         amin = 1e-10
         top_db = None
         self.mel_bins = mel_bins
-        self.Pooling= Pooling_layer(factor=0.5)
+        # self.Pooling= Pooling_layer(factor=0.5)
         # Spectrogram extractor
         self.spectrogram_extractor = Spectrogram(n_fft=window_size, hop_length=hop_size,
                                                  win_length=window_size, window=window, center=center,
@@ -259,7 +259,7 @@ class AudioModel_pre_Cnn10(nn.Module):
         self.audio_frontend = frontend
         pretrained_audio_encoder = torch.load('/mnt/fast/nobackup/users/mc02229/FishMM/pretrained_models/PANNs/Cnn10.pth')['model']
         dict_new = self.audio_encoder.state_dict().copy()
-        trained_list = [i for i in pretrained_audio_encoder.keys() if not ('fc_audioset' in i or i.startswith('bn0') or i.startswith('spec') or i.startswith('logmel'))]
+        trained_list = [i for i in pretrained_audio_encoder.keys() if not ('fc' in i or i.startswith('bn0') or i.startswith('spec') or i.startswith('logmel'))]
         for i in range(len(trained_list)):
             dict_new[trained_list[i]] = pretrained_audio_encoder[trained_list[i]]
         self.audio_encoder.load_state_dict(dict_new)
