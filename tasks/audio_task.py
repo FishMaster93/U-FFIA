@@ -65,7 +65,6 @@ def trainer(model, optimizer, train_loader, val_loader, test_loader, max_epoch, 
     ave_acc = np.mean(test_statistics['accuracy'])
     # message = test_statistics['message']
     logger.info(f' test_dataset mAP: {ave_precision}, accuracy: {ave_acc}')
-    # logger.info(f'Metrics report by test_class: {message}')
 
 
 

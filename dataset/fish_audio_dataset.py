@@ -231,6 +231,3 @@ if __name__ == '__main__':
     for item in tqdm(train_loader):
         print(item['audio_name'])
 
-    # noise_name = get_noisename()
-    # print(noise_name)
-    # print(len(noise_name))
