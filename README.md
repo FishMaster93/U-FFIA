@@ -12,6 +12,8 @@ Multimodal Fish Feeding Intensity Assessment in Aquaculture (The paper you can f
 
 The dataset can be found at: https://zenodo.org/records/11059975
 
+The demo page can be found at: https://fishmaster93.github.io/UFFIA_demopage/
+
 The pre-trained model folder can be found at: https://drive.google.com/drive/folders/1fh-Lo3S7-aTgfPni5-IeG5_-P7MBKBfL?usp=drive_link
 
 
