@@ -1,3 +1,5 @@
+[![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/pdf/2309.05058) [![GitHub Stars](https://img.shields.io/github/stars/Audio-AGI/WavJourney?style=social)](https://github.com/FishMaster93/U-FFIA) [![githubio](https://img.shields.io/badge/GitHub.io-Demo_Page-blue?logo=Github&style=flat-square)](https://fishmaster93.github.io/UFFIA_demopage/)
+
 # How to run U-FFIA?
 1. Install the environment in `environment.yml`
 2. Using the code of `dataset/fish_video_dataset.py` (the decord is a fast tool to read video frames as tensor and save to pickle), you need to download the video dataset and preprocess it.
